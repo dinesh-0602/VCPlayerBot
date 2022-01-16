@@ -48,7 +48,11 @@ async def main():
             await check_changes()
             await sync_from_db()
         except Exception as e:
-            LOGGER.error(f"Errors occured while setting up database for VCPlayerBot, check the value of DATABASE_URI. Full error - {str(e)}", exc_info=True)
+            LOGGER.error(
+                f'Errors occured while setting up database for VCPlayerBot, check the value of DATABASE_URI. Full error - {e}',
+                exc_info=True,
+            )
+
             Config.STARTUP_ERROR="Errors occured while setting up database for VCPlayerBot, check the value of DATABASE_URI. Full error - {str(e)}"
             LOGGER.info("Activating debug mode, you can reconfigure your bot with /env command.")
             await bot.stop()
@@ -90,7 +94,8 @@ async def main():
         if "unpack requires" in str(e):
             LOGGER.error("You Have to generate a new session string from the link given in README of the repo and replace the existing one with the new.")
             LOGGER.info("Activating debug mode, you can reconfigure your bot with /env command.")
-            Config.STARTUP_ERROR=f"You Have to generate a new session string from the link given in README of the repo and replace the existing one with the new. \nGenerate string session from https://repl.it/@subinps/getStringName"
+            Config.STARTUP_ERROR = 'You Have to generate a new session string from the link given in README of the repo and replace the existing one with the new. \nGenerate string session from https://repl.it/@subinps/getStringName'
+
         else:
             LOGGER.error(f"Startup was unsuccesfull, Errors - {e}", exc_info=True)
             LOGGER.info("Activating debug mode, you can reconfigure your bot with /env command.")

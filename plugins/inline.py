@@ -36,10 +36,7 @@ buttons = [
     ]
     ]
 def get_cmd(dur):
-    if dur:
-        return "/play"
-    else:
-        return "/stream"
+    return "/play" if dur else "/stream"
 @Client.on_inline_query()
 async def search(client, query):
     answers = []
